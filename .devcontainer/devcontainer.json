@@ -10,6 +10,10 @@
   ],
   "customizations": {
     "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "deno.enable": true
+      },
       "extensions": [
         "justjavac.vscode-deno-extensionpack",
         "vscode-icons-team.vscode-icons"

@@ -1,16 +1,16 @@
 # Deno Dev Container Template
 
-A TypeScript-first Deno development environment with AI-assisted coding powered by [OpenCode](https://opencode.ai).
+A ready-to-use Deno development environment with AI coding assistance powered by [OpenCode](https://opencode.ai).
 
-## Features
+## What's Inside
 
-- **Deno Runtime** — Official `denoland/deno` binary in a Debian-based dev container
-- **OpenCode AI Integration** — AI pair programmer configured with MiniMax M2.7 model (pre-configured, but any OpenAI-compatible API works)
-- **Deno-Native Workflow Enforcement** — Blocks Node.js/npm commands, redirects to Deno equivalents
-- **Automated Code Quality Checks** — Runs `deno fmt`, `deno lint`, `deno check` automatically after edits
-- **Multi-Specialist AI Review** — Agents for architecture, HTTP boundary, performance, dependency policy, and release readiness
-- **Security Guards** — Blocks reading of secret files (`.env`, `.pem`, credentials, etc.)
-- **Automated Dependency Updates** — Dependabot for both GitHub Actions and Deno dependencies
+- **Deno runtime**: Official `denoland/deno` image with everything set up
+- **OpenCode AI**: AI pair programmer configured with MiniMax M2.7 (or swap in any OpenAI-compatible model)
+- **Node blocker**: Blocked commands like `npm`, `npx`, and `pnpm` redirect to Deno equivalents to keep you in a native workflow
+- **Auto-formatting**: `deno fmt`, `deno lint`, and `deno check` run automatically after saves
+- **AI review agents**: Architecture, HTTP boundaries, performance, dependencies, and release readiness
+- **Secret protection**: Blocks accidental reads of `.env`, `.pem`, and credential files
+- **Dependabot**: Keeps GitHub Actions and Deno dependencies up to date
 
 ## Prerequisites
 
@@ -18,31 +18,39 @@ A TypeScript-first Deno development environment with AI-assisted coding powered 
 - [VS Code](https://code.visualstudio.com)
 - [VS Code Remote - Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
-## Quick Start
+## Getting Started
 
-1. Open in VS Code
+1. Open this repository in VS Code
 2. Run **Dev Containers: Clone Repository in Container Volume...** from the Command Palette
-3. Select GitHub and search for this repository
+3. Choose GitHub and search for this repository
 4. Wait for the container to build
-5. Set your `MINIMAX_API_KEY` environment variable in `.env`
-6. Run **Dev Containers: Rebuild Container** to apply the new environmental values
+5. Create a `.env` file in the root with your API key:
 
-## OpenCode AI Agents
+   ```env
+   MINIMAX_API_KEY=your_api_key_here
+   ```
 
-| Agent                      | Purpose                                                       |
-| -------------------------- | ------------------------------------------------------------- |
-| `orchestrate`              | Orchestrates work, decomposes tasks, delegates to specialists |
-| `deno-implementer`         | Makes code changes, prefers local tools, verifies scope       |
-| `deno-reviewer`            | Architecture, modularity, dependency review                   |
-| `deno-http-auditor`        | HTTP handler validation, response contracts                   |
-| `deno-performance-auditor` | Memory safety, streaming, pagination, complexity              |
-| `deno-release-manager`     | Pre-merge/release checklist                                   |
+6. Run **Dev Containers: Rebuild Container** so the environment variable is available inside the container
+7. Open a new Terminal and run `opencode` to start the AI assistant
 
-## Workflow Enforcement
+## AI Agents
 
-The `deno-commands` plugin intercepts and redirects common Node.js/npm commands to their Deno equivalents:
+These agents run inside OpenCode to help with different aspects of your code:
 
-| Blocked        | Redirected To |
+| Agent                      | What it does                                                      |
+| -------------------------- | ----------------------------------------------------------------- |
+| `orchestrate`              | Breaks down tasks and coordinates the other agents                |
+| `deno-implementer`         | Writes and edits code, prefers local Deno tools                   |
+| `deno-reviewer`            | Reviews architecture, modularity, and dependency structure        |
+| `deno-http-auditor`        | Checks HTTP handlers for validation and response contracts        |
+| `deno-performance-auditor` | Looks for memory issues, missing streams, and complexity problems |
+| `deno-release-manager`     | Runs pre-release checks before merging                            |
+
+## Staying in a Deno-Native Workflow
+
+Commands that don't exist in Deno are intercepted and redirected:
+
+| Instead of     | Use           |
 | -------------- | ------------- |
 | `npm run X`    | `deno task X` |
 | `npm test`     | `deno test`   |
@@ -50,14 +58,12 @@ The `deno-commands` plugin intercepts and redirects common Node.js/npm commands 
 | `prettier`     | `deno fmt`    |
 | `tsc --noEmit` | `deno check`  |
 
-## Environment Variables
+This keeps you from accidentally dropping into a Node.js workflow while working in a Deno project.
 
-This project is pre-configured to use MiniMax M2.7, but it's not a requirement. Any LLM supported by OpenCode can be used.
+## Model Configuration
 
-```env
-MINIMAX_API_KEY=your_api_key_here
-```
+The default model is MiniMax M2.7, but any LLM supported by OpenCode works. Set your API key in `.env` as shown above.
 
 ## License
 
-MIT License — Copyright 2026 Isaac Jessup
+MIT License: Copyright 2026 Isaac Jessup
