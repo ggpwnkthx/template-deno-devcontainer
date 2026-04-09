@@ -1,20 +1,20 @@
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     labels:
-      - "dependencies"
-      - "automated"
+      - 'dependencies'
+      - 'automated'
 
-  - package-ecosystem: "deno"
-    directory: "/"
+  - package-ecosystem: 'deno'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     labels:
-      - "dependencies"
-      - "automated"
+      - 'dependencies'
+      - 'automated'
     ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major"]
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
